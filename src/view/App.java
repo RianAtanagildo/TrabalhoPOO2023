@@ -47,44 +47,49 @@ public class App extends javax.swing.JFrame {
         btnIncluirReceita.setText("Incluir Receita");
         btnIncluirReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIncluirReceitaActionPerformed(evt);
+                aoPressionarIncluirReceita(evt);
             }
         });
 
         btnIncluirDespesa.setText("Incluir Despesa");
+        btnIncluirDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aoPressionarIncluirDespesa(evt);
+            }
+        });
 
         btnListarReceita.setText("Listar Receita");
         btnListarReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarReceitaActionPerformed(evt);
+                aoPressionarListarReceita(evt);
             }
         });
 
         btnListarDespesa.setText("Listar Despesa");
         btnListarDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarDespesaActionPerformed(evt);
+                aoPressionarListarDespesa(evt);
             }
         });
 
         btnConsultarSaldoData.setText("Consultar Saldo Até Data Atul");
         btnConsultarSaldoData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarSaldoDataActionPerformed(evt);
+                aoPressionarSaldoData(evt);
             }
         });
 
         btnConsultarSaldo.setText("Consultar Saldo Independente do Período");
         btnConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarSaldoActionPerformed(evt);
+                aoPressionarSaldoIndependente(evt);
             }
         });
 
         btnListarLancamento.setText("Listar Todos os Lançamentos");
         btnListarLancamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarLancamentoActionPerformed(evt);
+                aoPressionarListarLancamento(evt);
             }
         });
 
@@ -131,33 +136,44 @@ public class App extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIncluirReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirReceitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIncluirReceitaActionPerformed
+    private void aoPressionarIncluirReceita(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarIncluirReceita
+        this.setVisible(false);
+        new IncluirReceita().setVisible(true);
+    }//GEN-LAST:event_aoPressionarIncluirReceita
 
-    private void btnListarReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarReceitaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarReceitaActionPerformed
+    private void aoPressionarListarReceita(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarReceita
+        this.setVisible(false);
+        new ListarReceita().setVisible(true);
+    }//GEN-LAST:event_aoPressionarListarReceita
 
-    private void btnListarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDespesaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarDespesaActionPerformed
+    private void aoPressionarListarDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarDespesa
+        this.setVisible(false);
+        new ListarDespesa().setVisible(true);
+    }//GEN-LAST:event_aoPressionarListarDespesa
 
     private void btnListarDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDespesa1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarDespesa1ActionPerformed
 
-    private void btnConsultarSaldoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarSaldoDataActionPerformed
+    private void aoPressionarSaldoData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarSaldoData
+        this.setVisible(false);
+        new SaldoData().setVisible(true);
+    }//GEN-LAST:event_aoPressionarSaldoData
 
-    private void btnConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarSaldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarSaldoActionPerformed
+    private void aoPressionarSaldoIndependente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarSaldoIndependente
+        this.setVisible(false);
+        new SaldoIndependente().setVisible(true);
+    }//GEN-LAST:event_aoPressionarSaldoIndependente
 
-    private void btnListarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarLancamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarLancamentoActionPerformed
+    private void aoPressionarListarLancamento(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarLancamento
+        this.setVisible(false);
+        new ListarLancamento().setVisible(true);
+    }//GEN-LAST:event_aoPressionarListarLancamento
+
+    private void aoPressionarIncluirDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarIncluirDespesa
+        this.setVisible(false);
+        new IncluirDespesa().setVisible(true);
+    }//GEN-LAST:event_aoPressionarIncluirDespesa
 
     /**
      * @param args the command line arguments

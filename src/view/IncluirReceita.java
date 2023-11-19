@@ -44,6 +44,11 @@ public class IncluirReceita extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aoPressionarVoltar(evt);
+            }
+        });
 
         jLabelTitle.setText("Incluir Receita");
 
@@ -197,6 +202,11 @@ public class IncluirReceita extends javax.swing.JFrame {
     private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void aoPressionarVoltar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarVoltar
+        this.setVisible(false);
+        new App().setVisible(true);
+    }//GEN-LAST:event_aoPressionarVoltar
 
     /**
      * @param args the command line arguments
