@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "AppSemInterface",
+            "request": "launch",
+            "mainClass": "view.AppSemInterface",
+            "projectName": "TrabalhoPOO2023_2e49bcf2"
+        },
+        {
             "type": "java+",
             "request": "launch",
             "name": "Launch Java App"
