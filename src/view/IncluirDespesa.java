@@ -8,12 +8,12 @@ package view;
  *
  * @author vMp
  */
-public class IncluirReceita extends javax.swing.JFrame {
+public class IncluirDespesa extends javax.swing.JFrame {
 
     /**
      * Creates new form IncluirReceita
      */
-    public IncluirReceita() {
+    public IncluirDespesa() {
         initComponents();
     }
 
@@ -45,7 +45,7 @@ public class IncluirReceita extends javax.swing.JFrame {
 
         btnVoltar.setText("Voltar");
 
-        jLabelTitle.setText("Incluir Receita");
+        jLabelTitle.setText("Incluir Despesa");
 
         textFieldValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,20 +215,21 @@ public class IncluirReceita extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IncluirReceita().setVisible(true);
+                new IncluirDespesa().setVisible(true);
             }
         });
     }
