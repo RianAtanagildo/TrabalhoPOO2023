@@ -135,7 +135,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Incluir Receita"/>
+        <Property name="text" type="java.lang.String" value="Incluir Despesa"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldValor">
@@ -191,11 +191,14 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxCategoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="SAL&#xc1;RIO"/>
-            <StringItem index="1" value="D&#xc9;CIMO TERCEIRO"/>
-            <StringItem index="2" value="F&#xc9;RIAS"/>
-            <StringItem index="3" value="OUTROS"/>
+          <StringArray count="7">
+            <StringItem index="0" value="ALIMENTA&#xc7;&#xc3;O"/>
+            <StringItem index="1" value="TRANSPORTE"/>
+            <StringItem index="2" value="RESID&#xca;NCIA"/>
+            <StringItem index="3" value="SA&#xda;DE"/>
+            <StringItem index="4" value="EDUCA&#xc7;&#xc3;O"/>
+            <StringItem index="5" value="ENTRETENIMENTO"/>
+            <StringItem index="6" value="OUTROS"/>
           </StringArray>
         </Property>
       </Properties>

@@ -83,7 +83,7 @@ public class IncluirDespesa extends javax.swing.JFrame {
 
         jLabelCategoria.setText("Categoria:");
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SALÁRIO", "DÉCIMO TERCEIRO", "FÉRIAS", "OUTROS" }));
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALIMENTAÇÃO", "TRANSPORTE", "RESIDÊNCIA", "SAÚDE", "EDUCAÇÃO", "ENTRETENIMENTO", "OUTROS" }));
         jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCategoriaActionPerformed(evt);
