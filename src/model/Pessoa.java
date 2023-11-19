@@ -1,7 +1,7 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Pessoa {
@@ -29,23 +29,23 @@ public class Pessoa {
         return listaDespesas;
     }
 
-    public double ConsultarSaldoAteData(Date data) {
+    public double ConsultarSaldoAteData(LocalDate data) {
         double saldo = 0.0;
 
         for (Receita receita : listaReceitas) {
-        if (receita.getData().isBefore(data) || receita.getData().isEqual(data)) {
-        saldo += receita.getValor();
-    }
-}
-
+            if (receita.getData().isBefore(data) || receita.getData().isEqual(data)) {
+                saldo += receita.getValor();
+            }
+        }
         for (Despesa despesa : listaDespesas) {
-            if (despesa.getData().before(data) || despesa.getData().equals(data)) {
+            if (despesa.getData().isBefore(data) || despesa.getData().equals(data)) {
                 saldo -= despesa.getValor();
             }
         }
 
         return saldo;
     }
+        
 
     public double ConsultarSaldoTotal() {
         double saldo = 0.0;

@@ -1,17 +1,17 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Despesa {
     private int despesa;
     private double valor;
-    private Date data;
+    private LocalDate data;
     private CategoriaDespesa categoria;
 
-    public Despesa(int despesa, double valor, Date data, CategoriaDespesa categoria) {
+    public Despesa(int despesa, double valor, CategoriaDespesa categoria) {
         this.despesa = despesa;
         this.valor = valor;
-        this.data = data;
+        this.data = LocalDate.now();
         this.categoria = categoria;
     }
 
@@ -31,11 +31,11 @@ public class Despesa {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

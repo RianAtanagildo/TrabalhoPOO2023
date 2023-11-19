@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,7 +13,7 @@ import java.util.Date;
 public class Lancamento {
    private int lancamento;
    private double valor;
-   private Date data;
+   private LocalDate data;
    private String categoria;
 
     public int getLancamento() {
@@ -32,11 +32,11 @@ public class Lancamento {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
