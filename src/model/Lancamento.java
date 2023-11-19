@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author vinic
@@ -11,7 +13,7 @@ package model;
 public class Lancamento {
    private int lancamento;
    private double valor;
-   private int data;
+   private Date data;
    private String categoria;
 
     public int getLancamento() {
@@ -30,11 +32,11 @@ public class Lancamento {
         this.valor = valor;
     }
 
-    public int getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author vinic
@@ -11,10 +13,10 @@ package model;
 public class Receita {
    private int receita;
    private double valor;
-   private int data;
+   private Date data;
    private CategoriaReceita categoria;
 
-    public Receita(int receita, double valor, int data, CategoriaReceita categoria) {
+    public Receita(int receita, double valor, Date data, CategoriaReceita categoria) {
         this.receita = receita;
         this.valor = valor;
         this.data = data;
@@ -37,11 +39,11 @@ public class Receita {
         this.valor = valor;
     }
 
-    public int getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

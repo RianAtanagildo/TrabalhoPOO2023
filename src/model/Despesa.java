@@ -4,17 +4,19 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author vinic
  */
 public class Despesa {
     private int despesa;
-   private double valor;
-   private int data;
-   private CategoriaDespesa categoria;
+    private double valor;
+    private Date data;
+    private CategoriaDespesa categoria;
 
-    public Despesa(int despesa, double valor, int data, CategoriaDespesa categoria) {
+    public Despesa(int despesa, double valor, Date data, CategoriaDespesa categoria) {
         this.despesa = despesa;
         this.valor = valor;
         this.data = data;
@@ -37,15 +39,17 @@ public class Despesa {
         this.valor = valor;
     }
 
-    public int getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
- 
+    public void ListarDespesa (){
+
+    }
    
  
 }
