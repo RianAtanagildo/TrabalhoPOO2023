@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author vinic
- */
-    public class Pessoa {
+public class Pessoa {
     private List<Receita> listaReceitas;
     private List<Despesa> listaDespesas;
 
@@ -36,5 +29,35 @@ import java.util.List;
         return listaDespesas;
     }
 
-    
+    public double ConsultarSaldoAteData(Date data) {
+        double saldo = 0.0;
+
+        for (Receita receita : listaReceitas) {
+        if (receita.getData().isBefore(data) || receita.getData().isEqual(data)) {
+        saldo += receita.getValor();
+    }
+}
+
+        for (Despesa despesa : listaDespesas) {
+            if (despesa.getData().before(data) || despesa.getData().equals(data)) {
+                saldo -= despesa.getValor();
+            }
+        }
+
+        return saldo;
+    }
+
+    public double ConsultarSaldoTotal() {
+        double saldo = 0.0;
+
+        for (Receita receita : listaReceitas) {
+            saldo += receita.getValor();
+        }
+
+        for (Despesa despesa : listaDespesas) {
+            saldo -= despesa.getValor();
+        }
+
+        return saldo;
+    }
 }

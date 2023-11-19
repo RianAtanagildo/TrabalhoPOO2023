@@ -1,27 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import model.CategoriaReceita;
 
-/**
- *
- * @author vinic
- */
 public class Receita {
-   private int receita;
-   private double valor;
-   private Date data;
-   private CategoriaReceita categoria;
-
-    public Receita(int receita, double valor, Date data, CategoriaReceita categoria) {
-        this.receita = receita;
-        this.valor = valor;
-        this.data = data;
-        this.categoria = categoria;
-    }
+    private int receita;
+    private double valor;
+    private LocalDate data;
+    private CategoriaReceita categoria;
 
     public int getReceita() {
         return receita;
@@ -39,16 +25,21 @@ public class Receita {
         this.valor = valor;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
-  
+    public CategoriaReceita getCategoria() {
+        return categoria;
+    }
 
- 
+    public void setCategoria(CategoriaReceita categoria) {
+        this.categoria = categoria;
+    }
     
 }
+

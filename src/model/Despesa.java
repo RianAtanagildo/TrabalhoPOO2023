@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.Date;
 
-/**
- *
- * @author vinic
- */
 public class Despesa {
     private int despesa;
     private double valor;
@@ -47,9 +39,12 @@ public class Despesa {
         this.data = data;
     }
 
-    public void ListarDespesa (){
-
+    public CategoriaDespesa getCategoria() {
+        return categoria;
     }
-   
- 
+
+    public void setCategoria(CategoriaDespesa categoria) {
+        this.categoria = categoria;
+    }
 }
+
