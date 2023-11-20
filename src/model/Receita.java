@@ -1,21 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import model.CategoriaReceita;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
-public class Receita {
-    private int receita;
+public class Receita implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaReceita categoria;
-
-    public int getReceita() {
-        return receita;
-    }
-
-    public void setReceita(int receita) {
-        this.receita = receita;
-    }
 
     public double getValor() {
         return valor;
@@ -40,6 +33,10 @@ public class Receita {
     public void setCategoria(CategoriaReceita categoria) {
         this.categoria = categoria;
     }
-    
+
+    @Override
+    public String toString() {
+        return "RECEITA;" + categoria + ";" + data.getDayOfMonth() + "/"+ data.getMonthValue() + "/" + data.getYear() + ";" + valor;
+    }
 }
 

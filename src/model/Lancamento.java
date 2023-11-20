@@ -4,6 +4,15 @@
  */
 package model;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 
 /**
@@ -11,19 +20,21 @@ import java.time.LocalDate;
  * @author vinic
  */
 public class Lancamento {
-   private int lancamento;
-   private double valor;
-   private LocalDate data;
-   private String categoria;
+    private String tipo;
+    private double valor;
+    private LocalDate data;
+    private String categoria;
 
-    public int getLancamento() {
-        return lancamento;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setLancamento(int lancamento) {
-        this.lancamento = lancamento;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
-
+    
+    
+   
     public double getValor() {
         return valor;
     }
@@ -36,8 +47,8 @@ public class Lancamento {
         return data;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setData(String data) {
+        this.data = LocalDate(data);
     }
 
     public String getCategoria() {
@@ -48,5 +59,39 @@ public class Lancamento {
         this.categoria = categoria;
     }
    
-   
+    public Lancamento(String arquivo, Object lancamento) throws FileNotFoundException, IOException{
+        File file = new File(arquivo);
+        try (FileOutputStream fos = new FileOutputStream(arquivo);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeBytes("Categoria;Tipo;Data;Valor\n");
+            oos.writeBytes(lancamento.toString() + "\n");
+            
+        }
+    }
+    
+    public void lerDadosArquivo(String filepath) throws IOException {
+        File arquivo = new File(filepath);
+        try (FileInputStream fis = new FileInputStream(arquivo);
+             BufferedInputStream bis = new BufferedInputStream(fis);
+             DataInputStream dis = new DataInputStream(bis)) {
+            
+            while (true) {
+                this.setCategoria(dis.readUTF().trim());
+                this.setTipo( dis.readUTF().trim() );
+                this.setData( dis.readUTF().trim() );
+                this.setValor(dis.readDouble());
+            } 
+        } catch (EOFException e) {
+            
+        }
+        System.out.println("Categoria: " + this.getCategoria()+
+                            " Tipo: " + this.getTipo() +
+                            " Data: " + this.getData()+
+                            " Valor: " + this.getValor());
+    }
+
+    private LocalDate LocalDate(String data1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

@@ -1,27 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Despesa {
-    private int despesa;
+public class Despesa implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaDespesa categoria;
-
-    public Despesa(int despesa, double valor, CategoriaDespesa categoria) {
-        this.despesa = despesa;
-        this.valor = valor;
-        this.data = LocalDate.now();
-        this.categoria = categoria;
-    }
-
-    public int getDespesa() {
-        return despesa;
-    }
-
-    public void setDespesa(int despesa) {
-        this.despesa = despesa;
-    }
 
     public double getValor() {
         return valor;
@@ -45,6 +30,11 @@ public class Despesa {
 
     public void setCategoria(CategoriaDespesa categoria) {
         this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "DESPESA;" + categoria + ";" + data.getDayOfMonth() + "/"+ data.getMonthValue() + "/" + data.getYear() + ";" + valor;
     }
 }
 

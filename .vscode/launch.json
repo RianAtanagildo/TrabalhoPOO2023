@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "view.App",
+            "projectName": "TrabalhoPOO2023_2e49bcf2"
+        },
+        {
+            "type": "java",
             "name": "AppSemInterface",
             "request": "launch",
             "mainClass": "view.AppSemInterface",

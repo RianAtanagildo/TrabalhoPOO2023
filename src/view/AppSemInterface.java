@@ -1,28 +1,24 @@
 package view;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import model.CategoriaDespesa;
+import model.CategoriaReceita;
 import model.Despesa;
+import model.Lancamento;
 import model.Pessoa;
+import model.Receita;
 
 public class AppSemInterface {
-    public static void main(String[] args) {
-        CategoriaDespesa categoriaAlimentacao = CategoriaDespesa.ALIMENTACAO;
+    public static void main(String[] args) throws IOException {
+        Receita r = new Receita();
+        r.setCategoria(CategoriaReceita.SALARIO);
+        r.setData(LocalDate.now());
+        r.setValor(77);
+        String filepath =  "C:\\Users\\vMp\\Downloads\\test.csv";
+        Lancamento l = new Lancamento(filepath, r);
+        l.lerDadosArquivo(filepath);
+        
 
-
-        Despesa despesa1 = new Despesa(1, 500.0, categoriaAlimentacao);
-
-        System.out.println("Despesa: " + despesa1.getDespesa());
-        System.out.println("Valor: " + despesa1.getValor());
-        System.out.println("Data: " + despesa1.getData());
-        System.out.println("Categoria: " + despesa1.getCategoria());
-
-        System.out.println("App.main(-----------------------------------------------)");
-        Pessoa pessoa = new Pessoa();
-
-        pessoa.IncluirDespesa(despesa1);
-
-        double saldoTotal = pessoa.ConsultarSaldoTotal();
-        System.out.println("Saldo total: " + saldoTotal);
     }
 }
