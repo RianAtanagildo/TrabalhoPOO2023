@@ -7,7 +7,16 @@ public class Despesa implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaDespesa categoria;
+    private String tipo="DESPESA";
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     public double getValor() {
         return valor;
     }
@@ -37,4 +46,3 @@ public class Despesa implements Serializable {
         return "DESPESA;" + categoria + ";" + data.getDayOfMonth() + "/"+ data.getMonthValue() + "/" + data.getYear() + ";" + valor;
     }
 }
-

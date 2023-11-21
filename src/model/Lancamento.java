@@ -5,15 +5,15 @@
 package model;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+
 
 /**
  *
@@ -59,13 +59,25 @@ public class Lancamento {
         this.categoria = categoria;
     }
    
-    public Lancamento(String arquivo, Object lancamento) throws FileNotFoundException, IOException{
+    public Lancamento(String arquivo, Receita receita) throws IOException {
         File file = new File(arquivo);
-        try (FileOutputStream fos = new FileOutputStream(arquivo);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeBytes("Categoria;Tipo;Data;Valor\n");
-            oos.writeBytes(lancamento.toString() + "\n");
-            
+
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+            // Adicionar cabeçalho se o arquivo estiver vazio
+            if (file.length() == 0) {
+                writer.write("Categoria;Tipo;Data;Valor\n");
+            }
+
+            // Adicionar dados ao arquivo CSV
+            writer.write(receita.getCategoria() + ";");
+            writer.write(receita.getTipo() + ";");
+            writer.write(receita.getData().toString() + ";");
+            writer.write(String.valueOf(receita.getValor()));
+            writer.write("\n"); // Adicionar uma nova linha
+            System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo CSV: " + e.getMessage());
         }
     }
     
@@ -89,6 +101,7 @@ public class Lancamento {
                             " Data: " + this.getData()+
                             " Valor: " + this.getValor());
     }
+
 
     private LocalDate LocalDate(String data1) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
