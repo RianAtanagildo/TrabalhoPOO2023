@@ -58,28 +58,6 @@ public class Lancamento {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-   
-    public Lancamento(String arquivo, Receita receita) throws IOException {
-        File file = new File(arquivo);
-
-        
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
-            // Adicionar cabeçalho se o arquivo estiver vazio
-            if (file.length() == 0) {
-                writer.write("Categoria;Tipo;Data;Valor\n");
-            }
-
-            // Adicionar dados ao arquivo CSV
-            writer.write(receita.getCategoria() + ";");
-            writer.write(receita.getTipo() + ";");
-            writer.write(receita.getData().toString() + ";");
-            writer.write(String.valueOf(receita.getValor()));
-            writer.write("\n"); // Adicionar uma nova linha
-            System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
-        } catch (IOException e) {
-            System.err.println("Erro ao escrever no arquivo CSV: " + e.getMessage());
-        }
-    }
     
     public void lerDadosArquivo(String filepath) throws IOException {
         File arquivo = new File(filepath);

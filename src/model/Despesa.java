@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -7,15 +11,6 @@ public class Despesa implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaDespesa categoria;
-    private String tipo="DESPESA";
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
     
     public double getValor() {
         return valor;
@@ -39,6 +34,27 @@ public class Despesa implements Serializable {
 
     public void setCategoria(CategoriaDespesa categoria) {
         this.categoria = categoria;
+    }
+
+    public void transferirArquivo (String arquivo, Despesa despesa) throws IOException{
+        File file = new File(arquivo);
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+            // Adicionar cabeçalho se o arquivo estiver vazio
+            if (file.length() == 0) {
+                writer.write("Categoria;Tipo;Data;Valor\n");
+            }
+
+            // Adicionar dados ao arquivo CSV
+            writer.write("despesa;");
+            writer.write(despesa.getCategoria() + ";");
+            writer.write(despesa.getData().toString() + ";");
+            writer.write(String.valueOf(despesa.getValor()));
+            writer.write("\n"); // Adicionar uma nova linha
+            System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
+        } catch (IOException e) {
+            System.err.println("Erro ao escrever no arquivo CSV: " + e.getMessage());
+        }
     }
 
     @Override
