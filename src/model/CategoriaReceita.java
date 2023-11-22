@@ -5,8 +5,9 @@
 package model;
 
 /**
- *
- * @author vinic
+ *O enum CategoriaReceita representa as possíveis categorias associadas a uma receita financeira. 
+ *Cada valor no enum representa uma categoria específica.
+ * @author riang
  */
 public enum CategoriaReceita {
     SALARIO,

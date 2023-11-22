@@ -4,15 +4,15 @@
  */
 package model;
 
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 
-
 /**
- *
- * @author vinic
+ * A classe Lancamento representa um lançamento financeiro, contendo informações como tipo, valor, data e categoria.
+ * @author riang
  */
 public class Lancamento {
     private String tipo;
@@ -20,41 +20,74 @@ public class Lancamento {
     private LocalDate data;
     private String categoria;
 
-    
+    /**
+     * Construtor padrão que inicializa os atributos da classe.
+     */
     public Lancamento(){
         
     }
     
+    /**
+     * Retorna o tipo do lançamento.
+     * @return 
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     * Define o tipo do lançamento.
+     * @param tipo (String): Tipo a ser atribuído ao lançamento.
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
     
-    
-   
+    /**
+     * Retorna o valor do lançamento.
+     * @return 
+     */
     public double getValor() {
         return valor;
     }
 
+    /**
+     * Define o valor do lançamento.
+     * @param valor (double): Valor a ser atribuído ao lançamento.
+     */
     public void setValor(double valor) {
         this.valor = valor;
     }
 
+    /**
+     * Retorna a data do lançamento.
+     * @return 
+     */
     public LocalDate getData() {
         return data;
     }
 
+    /**
+     * Retorna a categoria do lançamento.
+     * @return 
+     */
     public String getCategoria() {
         return categoria;
     }
 
+    /**
+     * Define a categoria do lançamento.
+     * @param categoria (String): Categoria a ser atribuída ao lançamento.
+     */
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
     
+    /**
+     * Lê um arquivo CSV contendo lançamentos financeiros.
+     * @param caminhoArquivoCSV (String): Caminho do arquivo CSV a ser lido.
+     * IOException Lançada se houver um erro ao ler o arquivo CSV.
+     */
     public  void lerArquivo(String caminhoArquivoCSV) {
         try {
             BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivoCSV));

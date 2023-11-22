@@ -5,8 +5,9 @@
 package model;
 
 /**
- *
- * @author vinic
+ *O enum CategoriaDespesa representa as possíveis categorias associadas a uma despesa financeira.
+ *Cada valor no enum representa uma categoria específica.
+ * @author riang
  */
     public enum CategoriaDespesa {
     ALIMENTACAO,
