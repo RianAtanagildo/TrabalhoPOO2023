@@ -4,13 +4,8 @@
  */
 package model;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -25,6 +20,11 @@ public class Lancamento {
     private LocalDate data;
     private String categoria;
 
+    
+    public Lancamento(){
+        
+    }
+    
     public String getTipo() {
         return tipo;
     }
@@ -47,10 +47,6 @@ public class Lancamento {
         return data;
     }
 
-    public void setData(String data) {
-        this.data = LocalDate(data);
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -59,30 +55,25 @@ public class Lancamento {
         this.categoria = categoria;
     }
     
-    public void lerDadosArquivo(String filepath) throws IOException {
-        File arquivo = new File(filepath);
-        try (FileInputStream fis = new FileInputStream(arquivo);
-             BufferedInputStream bis = new BufferedInputStream(fis);
-             DataInputStream dis = new DataInputStream(bis)) {
-            
-            while (true) {
-                this.setCategoria(dis.readUTF().trim());
-                this.setTipo( dis.readUTF().trim() );
-                this.setData( dis.readUTF().trim() );
-                this.setValor(dis.readDouble());
-            } 
-        } catch (EOFException e) {
-            
+    public  void lerArquivo(String caminhoArquivoCSV) {
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivoCSV));
+
+            String colunas = leitor.readLine();
+            if (colunas != null) {
+                System.out.println("Colunas: " + colunas);
+            }
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                String[] elementos = linha.split(",");
+                for (String elemento : elementos) {
+                    System.out.print(elemento + " ");
+                }
+                System.out.println();
+            }
+            leitor.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        System.out.println("Categoria: " + this.getCategoria()+
-                            " Tipo: " + this.getTipo() +
-                            " Data: " + this.getData()+
-                            " Valor: " + this.getValor());
     }
-
-
-    private LocalDate LocalDate(String data1) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

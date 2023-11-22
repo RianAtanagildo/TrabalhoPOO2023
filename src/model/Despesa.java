@@ -46,7 +46,7 @@ public class Despesa implements Serializable {
             }
 
             // Adicionar dados ao arquivo CSV
-            writer.write("despesa;");
+            writer.write("DESPESA;");
             writer.write(despesa.getCategoria() + ";");
             writer.write(despesa.getData().toString() + ";");
             writer.write(String.valueOf(despesa.getValor()));

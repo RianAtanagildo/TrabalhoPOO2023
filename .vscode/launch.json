@@ -9,6 +9,13 @@
             "name": "AppSemInterface",
             "request": "launch",
             "mainClass": "view.AppSemInterface",
+            "projectName": "TrabalhoPOO2023_210f0d99"
+        },
+        {
+            "type": "java",
+            "name": "AppSemInterface",
+            "request": "launch",
+            "mainClass": "view.AppSemInterface",
             "projectName": "TrabalhoPOO2023_f20bb0a5"
         },
         {
