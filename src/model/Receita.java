@@ -15,6 +15,13 @@ public class Receita implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaReceita categoria;
+
+    public Receita (Double valor, LocalDate data, CategoriaReceita categoria) throws IOException{
+        setCategoria(categoria);
+        setData(data);
+        setValor(valor);
+        transferirArquivo();
+    }
     
     /**
      * Retorna o valor da receita.
@@ -70,19 +77,19 @@ public class Receita implements Serializable {
      * @param receita (Receita): Receita a ser transferida para o arquivo.
      * @throws IOException  Lançada se houver um erro ao escrever no arquivo CSV.
      */
-    public void transferirArquivo (String arquivo, Receita receita) throws IOException{
-        File file = new File(arquivo);
+    public void transferirArquivo () throws IOException{
+        File file = new File("Lancamento.csv");
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             // Adicionar cabeçalho se o arquivo estiver vazio
             if (file.length() == 0) {
                 writer.write("Categoria;Tipo;Data;Valor\n");
             }
             // Escreve dados ao arquivo CSV
             writer.write("RECEITA;");
-            writer.write(receita.getCategoria() + ";");
-            writer.write(receita.getData().toString() + ";");
-            writer.write(String.valueOf(receita.getValor()));
+            writer.write(getCategoria() + ";");
+            writer.write(getData().toString() + ";");
+            writer.write(String.valueOf(getValor()));
             writer.write("\n"); // Adicionar uma nova linha
             System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
         } catch (IOException e) {

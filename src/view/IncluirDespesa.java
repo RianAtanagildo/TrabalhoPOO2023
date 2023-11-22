@@ -4,6 +4,19 @@
  */
 package view;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.CategoriaDespesa;
+import model.Lancamento;
+import model.Pessoa;
+import model.Despesa;
+
 /**
  *
  * @author vMp
@@ -11,7 +24,7 @@ package view;
 public class IncluirDespesa extends javax.swing.JFrame {
 
     /**
-     * Creates new form IncluirReceita
+     * Creates new form IncluirDespesa
      */
     public IncluirDespesa() {
         initComponents();
@@ -26,6 +39,8 @@ public class IncluirDespesa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
         jLabelTitle = new javax.swing.JLabel();
         textFieldValor = new javax.swing.JTextField();
@@ -40,6 +55,21 @@ public class IncluirDespesa extends javax.swing.JFrame {
         jLabelCategoria = new javax.swing.JLabel();
         jComboBoxCategoria = new javax.swing.JComboBox<>();
         btnSalvar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,33 +82,9 @@ public class IncluirDespesa extends javax.swing.JFrame {
 
         jLabelTitle.setText("Incluir Despesa");
 
-        textFieldValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldValorActionPerformed(evt);
-            }
-        });
-
         jLabelValor.setText("Valor: ");
 
-        textFieldDia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldDiaActionPerformed(evt);
-            }
-        });
-
         jLabelData.setText("Data: ");
-
-        textFieldMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldMesActionPerformed(evt);
-            }
-        });
-
-        textFieldAno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldAnoActionPerformed(evt);
-            }
-        });
 
         jLabelDia.setText("Dia:");
 
@@ -88,14 +94,33 @@ public class IncluirDespesa extends javax.swing.JFrame {
 
         jLabelCategoria.setText("Categoria:");
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALIMENTAÇÃO", "TRANSPORTE", "RESIDÊNCIA", "SAÚDE", "EDUCAÇÃO", "ENTRETENIMENTO", "OUTROS" }));
-        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+            "ALIMENTACAO", "TRANSPORTE", "RESIDENCIA", "SAUDE", "EDUCACAO", "ENTRETENIMENTO", "OUTROS" }));
+        
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCategoriaActionPerformed(evt);
+                try {
+                    btnSalvarActionPerformed(evt);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
-        btnSalvar.setText("Salvar");
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Valor", "Data", "Categoria"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +154,7 @@ public class IncluirDespesa extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
                                 .addComponent(textFieldDia, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(textFieldMes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,6 +169,10 @@ public class IncluirDespesa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,72 +206,91 @@ public class IncluirDespesa extends javax.swing.JFrame {
                     .addComponent(jLabelCategoria))
                 .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldValorActionPerformed
-
-    private void textFieldDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldDiaActionPerformed
-
-    private void textFieldMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldMesActionPerformed
-
-    private void textFieldAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldAnoActionPerformed
-
-    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
-
     private void aoPressionarVoltar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarVoltar
+        Pessoa pessoa = new Pessoa();
+        List<Despesa> listaDespesas = pessoa.ListarDespesas();
+
+        // Agora você pode iterar sobre a lista de Despesas e fazer o que precisar
+        for (Despesa despesa : listaDespesas) {
+            // Exemplo: exibir valor de cada Despesa
+            System.out.println("Valor da Despesa: " + despesa.getValor());
+        }
+
         this.setVisible(false);
         new App().setVisible(true);
+
     }//GEN-LAST:event_aoPressionarVoltar
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_btnSalvarActionPerformed
+        // Botão Salvar
+       try {
+    if (textFieldValor.getText().isEmpty() || textFieldDia.getText().isEmpty()
+            || textFieldMes.getText().isEmpty() || textFieldAno.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    double valor = parseDouble(textFieldValor.getText());
+    int dia = parseInt(textFieldDia.getText());
+    int mes = parseInt(textFieldMes.getText());
+    int ano = parseInt(textFieldAno.getText());
+    String categoriaStr = jComboBoxCategoria.getSelectedItem().toString().toUpperCase();
+
+    CategoriaDespesa categoria = CategoriaDespesa.valueOf(categoriaStr);
+
+    if (mes < 1 || mes > 12 || dia < 1 || dia > 31) {
+        JOptionPane.showMessageDialog(this, "Data inválida. Verifique os valores de dia e mês.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+        return; // Retorna sem criar a data se a data for inválida
+    }
+
+    // Obter o modelo atual da tabela
+    DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
+
+    // Adiciona a nova linha ao modelo da tabela
+    for (int i = 0; i < 1; i++) { // Adiciona  Despesas 
+        LocalDate data = LocalDate.of(ano, mes, dia + i); // Ajuste para adicionar dias diferentes para cada Despesa
+
+        Despesa novaDespesa = new Despesa(valor, data, categoria);
+        Lancamento l = new Lancamento();
+
+        Object[] rowData = {l.lerArquivo()};
+        tableModel.addRow(rowData);
+
+        JOptionPane.showMessageDialog(this, "Despesa salva:\nValor: " + novaDespesa.getValor()
+                + "\nData: " + novaDespesa.getData()
+                + "\nCategoria: " + novaDespesa.getCategoria());
+    }
+
+    // Define o novo modelo da tabela
+    jTable2.setModel(tableModel);
+
+    // Limpa os campos após salvar
+    textFieldValor.setText("");
+    textFieldDia.setText("");
+    textFieldMes.setText("");
+    textFieldAno.setText("");
+    jComboBoxCategoria.setSelectedIndex(0);
+
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Por favor, insira valores válidos.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+} catch (IllegalArgumentException e) {
+    JOptionPane.showMessageDialog(this, "Categoria de Despesa inválida.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IncluirDespesa().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
@@ -255,6 +303,10 @@ public class IncluirDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMes;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelValor;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField textFieldAno;
     private javax.swing.JTextField textFieldDia;
     private javax.swing.JTextField textFieldMes;

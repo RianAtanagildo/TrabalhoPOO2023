@@ -88,9 +88,9 @@ public class Lancamento {
      * @param caminhoArquivoCSV (String): Caminho do arquivo CSV a ser lido.
      * IOException Lançada se houver um erro ao ler o arquivo CSV.
      */
-    public  void lerArquivo(String caminhoArquivoCSV) {
+    public  String lerArquivo() {
         try {
-            BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivoCSV));
+            BufferedReader leitor = new BufferedReader(new FileReader("Lancamento.csv"));
 
             String colunas = leitor.readLine();
             if (colunas != null) {
@@ -100,7 +100,7 @@ public class Lancamento {
             while ((linha = leitor.readLine()) != null) {
                 String[] elementos = linha.split(",");
                 for (String elemento : elementos) {
-                    System.out.print(elemento + " ");
+                    return elemento;
                 }
                 System.out.println();
             }
@@ -108,5 +108,6 @@ public class Lancamento {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "Arquivo vazio";
     }
 }

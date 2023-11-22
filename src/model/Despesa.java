@@ -17,6 +17,13 @@ public class Despesa implements Serializable {
     private LocalDate data;
     private CategoriaDespesa categoria;
    
+    public Despesa (Double valor, LocalDate data, CategoriaDespesa categoria) throws IOException{
+        setCategoria(categoria);
+        setData(data);
+        setValor(valor);
+        transferirArquivo();
+    }
+
     /**
      * Retorna o valor da despesa.
      * @return 
@@ -71,10 +78,10 @@ public class Despesa implements Serializable {
      * @param despesa(Despesa): Despesa a ser transferida para o arquivo.
      * @throws IOException Lançada se houver um erro ao escrever no arquivo CSV.
      */
-    public void transferirArquivo (String arquivo, Despesa despesa) throws IOException{
-        File file = new File(arquivo);
+    public void transferirArquivo () throws IOException{
+        File file = new File("Lancamento.csv");
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             // Adicionar cabeçalho se o arquivo estiver vazio
             if (file.length() == 0) {
                 writer.write("Categoria;Tipo;Data;Valor\n");
@@ -82,9 +89,9 @@ public class Despesa implements Serializable {
 
             // Adicionar dados ao arquivo CSV
             writer.write("DESPESA;");
-            writer.write(despesa.getCategoria() + ";");
-            writer.write(despesa.getData().toString() + ";");
-            writer.write(String.valueOf(despesa.getValor()));
+            writer.write(getCategoria() + ";");
+            writer.write(getData().toString() + ";");
+            writer.write(String.valueOf(getValor()));
             writer.write("\n"); // Adicionar uma nova linha
             System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
         } catch (IOException e) {

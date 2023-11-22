@@ -6,11 +6,14 @@ package view;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.CategoriaReceita;
+import model.Lancamento;
 import model.Pessoa;
 import model.Receita;
 
@@ -79,33 +82,9 @@ public class IncluirReceita extends javax.swing.JFrame {
 
         jLabelTitle.setText("Incluir Receita");
 
-        textFieldValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldValorActionPerformed(evt);
-            }
-        });
-
         jLabelValor.setText("Valor: ");
 
-        textFieldDia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldDiaActionPerformed(evt);
-            }
-        });
-
         jLabelData.setText("Data: ");
-
-        textFieldMes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldMesActionPerformed(evt);
-            }
-        });
-
-        textFieldAno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldAnoActionPerformed(evt);
-            }
-        });
 
         jLabelDia.setText("Dia:");
 
@@ -115,17 +94,18 @@ public class IncluirReceita extends javax.swing.JFrame {
 
         jLabelCategoria.setText("Categoria:");
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SALÁRIO", "DÉCIMO TERCEIRO", "FÉRIAS", "OUTROS" }));
-        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCategoriaActionPerformed(evt);
-            }
-        });
-
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {
+            "SALARIO", "DECIMO_TERCEIRO", "FERIAS", "OUTROS" }));
+        
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                try {
+                    btnSalvarActionPerformed(evt);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -234,27 +214,6 @@ public class IncluirReceita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldValorActionPerformed
-
-    private void textFieldDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldDiaActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_textFieldDiaActionPerformed
-
-    private void textFieldMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldMesActionPerformed
-
-    private void textFieldAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldAnoActionPerformed
-
-    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
-
     private void aoPressionarVoltar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarVoltar
         Pessoa pessoa = new Pessoa();
         List<Receita> listaReceitas = pessoa.ListarReceitas();
@@ -270,7 +229,7 @@ public class IncluirReceita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_aoPressionarVoltar
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_btnSalvarActionPerformed
         // Botão Salvar
        try {
     if (textFieldValor.getText().isEmpty() || textFieldDia.getText().isEmpty()
@@ -300,8 +259,9 @@ public class IncluirReceita extends javax.swing.JFrame {
         LocalDate data = LocalDate.of(ano, mes, dia + i); // Ajuste para adicionar dias diferentes para cada receita
 
         Receita novaReceita = new Receita(valor, data, categoria);
+        Lancamento l = new Lancamento();
 
-        Object[] rowData = {novaReceita.getValor(), novaReceita.getData(), novaReceita.getCategoria()};
+        Object[] rowData = {l.lerArquivo()};
         tableModel.addRow(rowData);
 
         JOptionPane.showMessageDialog(this, "Receita salva:\nValor: " + novaReceita.getValor()
@@ -330,37 +290,7 @@ public class IncluirReceita extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IncluirReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IncluirReceita().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
