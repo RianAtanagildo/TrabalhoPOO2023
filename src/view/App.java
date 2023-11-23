@@ -73,19 +73,6 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        btnListarDespesa.setText("Listar Despesa");
-        btnListarDespesa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aoPressionarListarDespesa(evt);
-            }
-        });
-
-        btnListarLancamento.setText("Listar Todos os Lançamentos");
-        btnListarLancamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aoPressionarListarLancamento(evt);
-            }
-        });
 
         tbConsultaDespesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,11 +102,11 @@ public class App extends javax.swing.JFrame {
                             .addComponent(btnListarReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
-                        .addComponent(btnListarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnListarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnListarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(btnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,12 +114,12 @@ public class App extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIncluirDespesa)
+                    .addComponent(btnIncluirReceita)
                     .addComponent(btnIncluirReceita))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListarReceita)
-                    .addComponent(btnListarDespesa)
+                    .addComponent(btnListarReceita)
                     .addComponent(btnListarLancamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,25 +157,7 @@ public class App extends javax.swing.JFrame {
         
     }//GEN-LAST:event_aoPressionarListarReceita
 
-    private void aoPressionarListarDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarDespesa
-        DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
-        Lancamento l = new Lancamento();
-
-        modelo.setRowCount(0);
-
-        var modeloColuna = tbConsultaDespesa.getColumnModel();
-        modeloColuna.getColumn(0).setPreferredWidth(25);
-        modeloColuna.getColumn(1).setPreferredWidth(100);
-        modeloColuna.getColumn(2).setPreferredWidth(35);
-
-        for (String elemento : l.lerArquivo()) {
-
-            String[] dados = elemento.split(";");
-
-
-            modelo.addRow(dados);
-        }
-    }//GEN-LAST:event_aoPressionarListarDespesa
+    
 
     private void btnListarDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDespesa1ActionPerformed
         // TODO add your handling code here:
