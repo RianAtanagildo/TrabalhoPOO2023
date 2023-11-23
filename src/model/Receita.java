@@ -15,6 +15,10 @@ public class Receita implements Serializable {
     private double valor;
     private LocalDate data;
     private CategoriaReceita categoria;
+    
+    public Receita(){
+        
+    }
 
     public Receita (Double valor, LocalDate data, CategoriaReceita categoria) throws IOException{
         setCategoria(categoria);

@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * A classe Lancamento representa um lançamento financeiro, contendo informações como tipo, valor, data e categoria.
@@ -88,7 +89,8 @@ public class Lancamento {
      * @param caminhoArquivoCSV (String): Caminho do arquivo CSV a ser lido.
      * IOException Lançada se houver um erro ao ler o arquivo CSV.
      */
-    public  String lerArquivo() {
+    public  String[] lerArquivo() {
+        ArrayList<Receita> receitas = new ArrayList<>();
         try {
             BufferedReader leitor = new BufferedReader(new FileReader("Lancamento.csv"));
 
@@ -98,16 +100,13 @@ public class Lancamento {
             }
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                String[] elementos = linha.split(",");
-                for (String elemento : elementos) {
-                    return elemento;
-                }
-                System.out.println();
+                String[] elementos = linha.split(";");
+                    return elementos;
             }
             leitor.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Arquivo vazio";
+        return null;
     }
 }

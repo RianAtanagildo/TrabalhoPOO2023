@@ -4,6 +4,14 @@
  */
 package view;
 
+import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
+import model.Despesa;
+import model.Lancamento;
+import model.Receita;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author vMp
@@ -31,9 +39,9 @@ public class App extends javax.swing.JFrame {
         btnIncluirDespesa = new javax.swing.JButton();
         btnListarReceita = new javax.swing.JButton();
         btnListarDespesa = new javax.swing.JButton();
-        btnConsultarSaldoData = new javax.swing.JButton();
-        btnConsultarSaldo = new javax.swing.JButton();
         btnListarLancamento = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbConsultaDespesa = new javax.swing.JTable();
 
         btnListarDespesa1.setText("Listar Despesa");
         btnListarDespesa1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,26 +80,25 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        btnConsultarSaldoData.setText("Consultar Saldo Até Data Atul");
-        btnConsultarSaldoData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aoPressionarSaldoData(evt);
-            }
-        });
-
-        btnConsultarSaldo.setText("Consultar Saldo Independente do Período");
-        btnConsultarSaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aoPressionarSaldoIndependente(evt);
-            }
-        });
-
         btnListarLancamento.setText("Listar Todos os Lançamentos");
         btnListarLancamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aoPressionarListarLancamento(evt);
             }
         });
+
+        tbConsultaDespesa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbConsultaDespesa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,16 +108,18 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnListarReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
+                        .addComponent(btnListarDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnListarDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnConsultarSaldoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConsultarSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addComponent(btnListarLancamento, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                            .addComponent(btnListarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(btnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,14 +132,11 @@ public class App extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListarReceita)
-                    .addComponent(btnListarDespesa))
-                .addGap(26, 26, 26)
-                .addComponent(btnListarLancamento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConsultarSaldo)
-                .addGap(12, 12, 12)
-                .addComponent(btnConsultarSaldoData)
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addComponent(btnListarDespesa)
+                    .addComponent(btnListarLancamento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,8 +148,23 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_aoPressionarIncluirReceita
 
     private void aoPressionarListarReceita(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarReceita
-        this.setVisible(false);
-        new ListarReceita().setVisible(true);
+        DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
+        Lancamento l  = new Lancamento();
+        
+        System.out.println(Arrays.toString(l.lerArquivo()));
+
+        
+        modelo.setRowCount(0);
+
+        var modeloColuna = tbConsultaDespesa.getColumnModel();
+
+        modeloColuna.getColumn(0).setPreferredWidth(25);
+
+        modeloColuna.getColumn(1).setPreferredWidth(100);
+
+        modeloColuna.getColumn(2).setPreferredWidth(35);
+
+        
     }//GEN-LAST:event_aoPressionarListarReceita
 
     private void aoPressionarListarDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarDespesa
@@ -154,16 +175,6 @@ public class App extends javax.swing.JFrame {
     private void btnListarDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDespesa1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarDespesa1ActionPerformed
-
-    private void aoPressionarSaldoData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarSaldoData
-        this.setVisible(false);
-        new SaldoData().setVisible(true);
-    }//GEN-LAST:event_aoPressionarSaldoData
-
-    private void aoPressionarSaldoIndependente(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarSaldoIndependente
-        this.setVisible(false);
-        new SaldoIndependente().setVisible(true);
-    }//GEN-LAST:event_aoPressionarSaldoIndependente
 
     private void aoPressionarListarLancamento(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarLancamento
         this.setVisible(false);
@@ -212,13 +223,13 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultarSaldo;
-    private javax.swing.JButton btnConsultarSaldoData;
     private javax.swing.JButton btnIncluirDespesa;
     private javax.swing.JButton btnIncluirReceita;
     private javax.swing.JButton btnListarDespesa;
     private javax.swing.JButton btnListarDespesa1;
     private javax.swing.JButton btnListarLancamento;
     private javax.swing.JButton btnListarReceita;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbConsultaDespesa;
     // End of variables declaration//GEN-END:variables
 }
