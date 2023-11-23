@@ -38,8 +38,6 @@ public class App extends javax.swing.JFrame {
         btnIncluirReceita = new javax.swing.JButton();
         btnIncluirDespesa = new javax.swing.JButton();
         btnListarReceita = new javax.swing.JButton();
-        btnListarDespesa = new javax.swing.JButton();
-        btnListarLancamento = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConsultaDespesa = new javax.swing.JTable();
 
@@ -66,13 +64,12 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        btnListarReceita.setText("Listar Receita");
+        btnListarReceita.setText("Listar Registro");
         btnListarReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aoPressionarListarReceita(evt);
             }
         });
-
 
         tbConsultaDespesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,37 +90,29 @@ public class App extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnListarReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
-                        .addComponent(btnListarReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnListarLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnListarReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIncluirDespesa)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(336, 336, 336)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIncluirReceita)
+                    .addComponent(btnIncluirDespesa)
                     .addComponent(btnIncluirReceita))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnListarReceita)
-                    .addComponent(btnListarReceita)
-                    .addComponent(btnListarLancamento))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnListarReceita)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,21 +127,17 @@ public class App extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
         Lancamento l = new Lancamento();
 
-        modelo.setRowCount(0);
+        modelo.setRowCount(1);
 
 
         var modeloColuna = tbConsultaDespesa.getColumnModel();
-        modeloColuna.getColumn(0).setPreferredWidth(25);
-        modeloColuna.getColumn(1).setPreferredWidth(100);
-        modeloColuna.getColumn(2).setPreferredWidth(35);
+        modeloColuna.getColumn(0).setPreferredWidth(100);
 
         for (String elemento : l.lerArquivo()) {
 
-            String[] dados = elemento.split(",");
-
+            String[] dados = elemento.split(";");
 
             modelo.addRow(dados);
-            modelo.setRowCount(modelo.getRowCount() + 1);
         }
         
     }//GEN-LAST:event_aoPressionarListarReceita
@@ -208,9 +193,7 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIncluirDespesa;
     private javax.swing.JButton btnIncluirReceita;
-    private javax.swing.JButton btnListarDespesa;
     private javax.swing.JButton btnListarDespesa1;
-    private javax.swing.JButton btnListarLancamento;
     private javax.swing.JButton btnListarReceita;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbConsultaDespesa;
