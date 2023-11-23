@@ -89,13 +89,13 @@ public class App extends javax.swing.JFrame {
 
         tbConsultaDespesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Registros"
             }
         ));
         jScrollPane1.setViewportView(tbConsultaDespesa);
@@ -149,42 +149,51 @@ public class App extends javax.swing.JFrame {
 
     private void aoPressionarListarReceita(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarReceita
         DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
-        Lancamento l  = new Lancamento();
-        
-        
+        Lancamento l = new Lancamento();
 
-        
         modelo.setRowCount(0);
 
+
         var modeloColuna = tbConsultaDespesa.getColumnModel();
-
         modeloColuna.getColumn(0).setPreferredWidth(25);
-
         modeloColuna.getColumn(1).setPreferredWidth(100);
-
         modeloColuna.getColumn(2).setPreferredWidth(35);
 
         for (String elemento : l.lerArquivo()) {
-            System.out.println(elemento);
-            modelo.addRow(new Object[]{elemento});
-            
+
+            String[] dados = elemento.split(",");
+
+
+            modelo.addRow(dados);
+            modelo.setRowCount(modelo.getRowCount() + 1);
         }
         
     }//GEN-LAST:event_aoPressionarListarReceita
 
     private void aoPressionarListarDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarDespesa
-        this.setVisible(false);
-        new ListarDespesa().setVisible(true);
+        DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
+        Lancamento l = new Lancamento();
+
+        modelo.setRowCount(0);
+
+        var modeloColuna = tbConsultaDespesa.getColumnModel();
+        modeloColuna.getColumn(0).setPreferredWidth(25);
+        modeloColuna.getColumn(1).setPreferredWidth(100);
+        modeloColuna.getColumn(2).setPreferredWidth(35);
+
+        for (String elemento : l.lerArquivo()) {
+
+            String[] dados = elemento.split(";");
+
+
+            modelo.addRow(dados);
+        }
     }//GEN-LAST:event_aoPressionarListarDespesa
 
     private void btnListarDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDespesa1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarDespesa1ActionPerformed
 
-    private void aoPressionarListarLancamento(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarListarLancamento
-        this.setVisible(false);
-        new ListarLancamento().setVisible(true);
-    }//GEN-LAST:event_aoPressionarListarLancamento
 
     private void aoPressionarIncluirDespesa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aoPressionarIncluirDespesa
         this.setVisible(false);
