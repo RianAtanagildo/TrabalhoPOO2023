@@ -59,6 +59,9 @@ public class Pessoa {
      * @return 
      */
     public double ConsultarSaldoAteData(LocalDate data) {
+        if (data == null) {
+            throw new IllegalArgumentException("A data deve ser informada.");
+        }
         double saldo = 0.0;
 
         for (Receita receita : listaReceitas) {
@@ -80,6 +83,9 @@ public class Pessoa {
      * @return 
      */
     public double ConsultarSaldoTotal() {
+         if (listaReceitas == null || listaDespesas == null) {
+        throw new IllegalArgumentException("As listas de receitas e despesas não podem ser nulas.");
+    }
         double saldo = 0.0;
 
         for (Receita receita : listaReceitas) {
