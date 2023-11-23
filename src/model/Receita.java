@@ -77,8 +77,6 @@ public class Receita implements Serializable {
 
     /**
      * Transfere os dados da receita para um arquivo CSV.
-     * @param arquivo (String): Caminho do arquivo CSV.
-     * @param receita (Receita): Receita a ser transferida para o arquivo.
      * @throws IOException  Lançada se houver um erro ao escrever no arquivo CSV.
      */
     public void transferirArquivo () throws IOException{
@@ -90,12 +88,16 @@ public class Receita implements Serializable {
                 writer.write("Categoria;Tipo;Data;Valor\n");
             }
             // Escreve dados ao arquivo CSV
-            writer.write("RECEITA;");
-            writer.write(getCategoria() + ";");
-            writer.write(getData().toString() + ";");
-            writer.write(String.valueOf(getValor()));
-            writer.write("\n"); // Adicionar uma nova linha
-            System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
+            try {
+                writer.write("RECEITA;");
+                writer.write(getCategoria() + ";");
+                writer.write(getData().toString() + ";");
+                writer.write(String.valueOf(getValor()));
+                writer.write("\n"); // Adicionar uma nova linha
+                System.out.println("Dados adicionados ao arquivo CSV com sucesso.");
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("A categoria ou o valor da receita não é válido.", e);
+            }
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo CSV: " + e.getMessage());
         }
@@ -107,6 +109,9 @@ public class Receita implements Serializable {
      */
     @Override
     public String toString() {
+        if (categoria == null) {
+            throw new IllegalArgumentException("A categoria não pode ser nula.");
+        }
         return "RECEITA;" + categoria + ";" + data.getDayOfMonth() + "/"+ data.getMonthValue() + "/" + data.getYear() + ";" + valor;
     }
 }

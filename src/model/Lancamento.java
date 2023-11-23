@@ -86,7 +86,6 @@ public class Lancamento {
     
     /**
      * Lê um arquivo CSV contendo lançamentos financeiros.
-     * @param caminhoArquivoCSV (String): Caminho do arquivo CSV a ser lido.
      * IOException Lançada se houver um erro ao ler o arquivo CSV.
      */
     public  String[] lerArquivo() {
