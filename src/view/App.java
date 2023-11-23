@@ -151,7 +151,7 @@ public class App extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tbConsultaDespesa.getModel();
         Lancamento l  = new Lancamento();
         
-        System.out.println(Arrays.toString(l.lerArquivo()));
+        
 
         
         modelo.setRowCount(0);
@@ -164,6 +164,11 @@ public class App extends javax.swing.JFrame {
 
         modeloColuna.getColumn(2).setPreferredWidth(35);
 
+        for (String elemento : l.lerArquivo()) {
+            System.out.println(elemento);
+            modelo.addRow(new Object[]{elemento});
+            
+        }
         
     }//GEN-LAST:event_aoPressionarListarReceita
 
